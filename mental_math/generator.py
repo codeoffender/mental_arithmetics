@@ -208,7 +208,15 @@ def generate_expression(level: int) -> Tuple[str, Tuple[int, int]]:
         if op in ('*', '/') and (chain_n * (1 if chain_d > 0 else -1)) < 0:
             op = random.choice(['+', '-'])
 
-        # Ensure we don't start a multiplicative chain with division by zero and exact division
+        # Enforce operand-range rule for multiplicative ops: the left operand of '*' or '/'
+        # must also be within the configured range for that operator (by absolute value).
+        if op in ('*', '/'):
+            max_abs = max(abs(LEVELS[level][op][0]), abs(LEVELS[level][op][1]))
+            if abs(chain_n) > max_abs * abs(chain_d):
+                # Too large to be a valid multiplicand/dividend for this level → switch to + or -
+                op = random.choice(['+', '-'])
+
+        # Ensure we don't start a multiplicative chain with division by zero and keep exact/allowed division
         if op == '/':
             # Compute allowed divisors under current chain and level
             ds = allowed_divisors_for_chain(chain_n, chain_d, level)
