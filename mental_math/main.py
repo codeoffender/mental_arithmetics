@@ -61,6 +61,9 @@ LEVEL_HELP = (
     "Level 1: +, -, *, / with ranges: +/-(−100..100), */÷(−10..10), up to 2 operators per expression — division results are integers.\n"
     "Level 2: +, -, *, / with ranges: +/-(−500..500), */÷(−20..20), up to 2 operators per expression — division results are integers.\n"
     "Level 3: +, -, *, / with ranges: +/-(−1000..1000), */÷(−30..30), up to 4 operators per expression — division may yield halves (x.5).\n"
+    "Level 4: only * and ÷, exactly 2 operators; all operands positive; integer results; sum of operands ≤ 20.\n"
+    "Level 5: only * and ÷, exactly 3 operators; all operands positive; integer results; sum of operands ≤ 30.\n"
+    "Level 6: only * and ÷, exactly 3 operators; all operands positive; integer results; sum of operands ≤ 40.\n"
 )
 
 
@@ -193,7 +196,7 @@ def summarize(results: List[TaskResult]) -> None:
 
 def main(argv: Optional[List[str]] = None) -> int:
     p = argparse.ArgumentParser(description="Mental arithmetic trainer (spoken tasks)")
-    p.add_argument("--level", "-l", type=int, choices=[1, 2, 3], default=1, help="Difficulty level (1..3)")
+    p.add_argument("--level", "-l", type=int, choices=[1, 2, 3, 4, 5, 6], default=1, help="Difficulty level (1..6)")
     p.add_argument("--tasks", "-n", type=int, default=20, help="Number of tasks per run (default 20)")
     p.add_argument("--time", "-t", type=int, default=30, help="Seconds per task (default 30)")
     p.add_argument("--no-tts", action="store_true", help="Disable text-to-speech")
