@@ -245,7 +245,8 @@ def _generate_mul_div_only(level: int) -> Tuple[str, Tuple[int, int]]:
                 # To keep it fast, sample candidates up to max_add
                 upper = max_add
                 for d in range(2, upper + 1):
-                    if value % d == 0:
+                    # Avoid trivial division where dividend equals divisor (e.g., 5 / 5)
+                    if value % d == 0 and d != value:
                         divs.append(d)
                 if not divs:
                     # cannot divide; try to switch to multiplication if possible
