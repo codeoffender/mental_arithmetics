@@ -59,7 +59,7 @@ class TaskResult:
 
 LEVEL_HELP = (
     "Level 1: +, -, *, / with ranges: +/-(−100..100), */÷(−10..10), up to 2 operators per expression — division results are integers.\n"
-    "Level 2: +, -, *, / with ranges: +/-(−500..500), */÷(−20..20), up to 3 operators per expression — division results are integers.\n"
+    "Level 2: +, -, *, / with ranges: +/-(−500..500), */÷(−20..20), up to 2 operators per expression — division results are integers.\n"
     "Level 3: +, -, *, / with ranges: +/-(−1000..1000), */÷(−30..30), up to 4 operators per expression — division may yield halves (x.5).\n"
 )
 
